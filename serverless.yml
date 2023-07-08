@@ -1,0 +1,45 @@
+service: AWS-swapi-traduccion
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: us-east-1
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:*
+      Resource:
+        - arn:aws:dynamodb:us-east-1:407236388192:table/tableSW
+
+
+functions:
+  getData:
+    handler: src/controllers/list/getData.getData
+    events:
+      - httpApi:
+          path: /
+          method: get
+
+  addpeople:
+    handler: src/controllers/create/addpeople.addpeople
+    events:
+      - httpApi:
+          path: /
+          method: post
+	
+resources: # CloudFormation template syntax
+  Resources:
+    usersTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: tableSW
+        AttributeDefinitions:
+          - AttributeName: nombre
+            AttributeType: S
+        KeySchema:
+          - AttributeName: nombre
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
