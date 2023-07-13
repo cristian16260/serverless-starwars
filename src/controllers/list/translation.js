@@ -1,6 +1,6 @@
 const translation = async () => {
   let table = []
-  for (let people = 1; people < 4; people++) {
+  for (let people = 1; people < 13; people++) {
     const res = await fetch(`https://swapi.py4e.com/api/people/${people}`)
     const data = await res.json()
 
@@ -23,7 +23,7 @@ const translation = async () => {
       url: data.url,
     })
   }
-  return console.log(table)
+  return table
 }
 
 module.exports = {

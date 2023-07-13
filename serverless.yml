@@ -27,19 +27,17 @@ functions:
       - httpApi:
           path: /
           method: post
-	
+
 resources: # CloudFormation template syntax
   Resources:
     usersTable:
       Type: AWS::DynamoDB::Table
       Properties:
         TableName: tableSW
+        BillingMode: PAY_PER_REQUEST
         AttributeDefinitions:
           - AttributeName: nombre
             AttributeType: S
         KeySchema:
           - AttributeName: nombre
             KeyType: HASH
-        ProvisionedThroughput:
-          ReadCapacityUnits: 1
-          WriteCapacityUnits: 1
