@@ -7,3 +7,11 @@ describe('addpeople', () => {
     expect(people.body.nombre).toBe('cristian')
   })
 })
+
+describe('addpeople', () => {
+  test('new people', () => {
+    const people = receive()
+    console.log(people)
+    expect(people).toBe(undefined)
+  })
+})

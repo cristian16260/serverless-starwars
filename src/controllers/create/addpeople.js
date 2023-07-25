@@ -7,7 +7,6 @@ module.exports.addpeople = async (event) => {
 
   const dynamodb = new AWS.DynamoDB.DocumentClient()
   const data = receive({ body: datos })
-  console.log(data.body)
 
   await dynamodb
     .put({
